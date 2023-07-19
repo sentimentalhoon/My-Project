@@ -1,0 +1,27 @@
+[
+  {
+    "title": "Attention",
+    "singer": "뉴진스",
+    "filePath": "java_ex_music_player\\data\\Attention.mp3"
+  },
+  {
+    "title": "Butterfly",
+    "singer": "전영호",
+    "filePath": "java_ex_music_player\\data\\Butterfly.mp3"
+  },
+  {
+    "title": "Lovedive",
+    "singer": "아이브",
+    "filePath": "java_ex_music_player\\data\\Lovedive.mp3"
+  },
+  {
+    "title": "Nxde",
+    "singer": "아이들",
+    "filePath": "java_ex_music_player\\data\\Nxde.mp3"
+  },
+  {
+    "title": "Rushhour",
+    "singer": "크러쉬",
+    "filePath": "java_ex_music_player\\data\\Rushhour.mp3"
+  }
+]
