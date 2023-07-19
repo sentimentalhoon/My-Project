@@ -1,10 +1,10 @@
 package Member;
 
 public class Member {
-    String id;
-    String name;
-    int age;
-    Boolean isValid;
+    private String id;
+    private String name;
+    private int age;
+    private Boolean isValid = false;
     public Member(){
 
     }

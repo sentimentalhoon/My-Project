@@ -21,6 +21,15 @@ public class MemberTable {
         return _instance;
     }
 
+    /**
+     * 회원 ID를 입력한다.
+     * 
+     * @param id
+     * @param pw
+     * @param name
+     * @param age
+     * @return 성공 여부를 반환한다.
+     */
     public boolean insertData(String id, String pw, String name, int age) {
         PreparedStatement pstm = null;
         Connection connection = null;
@@ -133,14 +142,13 @@ public class MemberTable {
         ArrayList<Member> arrayListMember = new ArrayList<Member>();
         try {
             connection = MemberDAO.getInstance().getConnection();
-            pstm = connection.prepareStatement("Select * From aimember");
+            pstm = connection.prepareStatement("Select * From aimember Order by id ASC");
             rs = pstm.executeQuery();
             while (rs.next()) {
                 Member member = new Member();
                 member.setId(rs.getString("id"));
                 member.setName(rs.getString("name"));
                 member.setAge(rs.getInt("age"));
-                member.setIsValid(true);
                 arrayListMember.add(member);
             }
             return arrayListMember;
@@ -152,31 +160,31 @@ public class MemberTable {
         }
     }
 
-    public Member searchMember(String id) {
+    public ArrayList<Member> searchMember(String id) {
         ResultSet rs = null;
         PreparedStatement pstm = null;
         Connection connection = null;
+        ArrayList<Member> members = new ArrayList<Member>();
         Member member = null;
         try {
             connection = MemberDAO.getInstance().getConnection();
-            pstm = connection.prepareStatement("Select * From aimember Where id = ?");
-            pstm.setString(1, id);
+            pstm = connection.prepareStatement("Select * From aimember Where id Like '%" + id + "%'");
+            // pstm.setString(1, id);
             rs = pstm.executeQuery();
             while (rs.next()) {
                 member = new Member();
                 member.setId(rs.getString("id"));
                 member.setName(rs.getString("name"));
                 member.setAge(rs.getInt("age"));
-                member.setIsValid(true);
-                return member;
+                members.add(member);
             }
+            return members;
         } catch (SQLException e) {
             e.printStackTrace();
-            return member;
+            return members;
         } finally {
             close(rs, pstm, connection);
         }
-        return member;
     }
 
     public SQLException close(Connection con) {
